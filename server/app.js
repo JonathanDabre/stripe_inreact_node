@@ -2,7 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const stripe = require("stripe")(process.env.STRIPE_SECRET);
+// const stripe = require("stripe")(process.env.STRIPE_SECRET);
+const stripe = require("stripe")("sk_test_51P58KfSBB7fSgs2Bx0Qd6S9s7ScGzUa6JEV1HaDj2Ot1pUOJKWSrD4X3Mo0tFFzSUUo0RovC04HewpING3i6fDwF00i0jBGjAf")
 
 app.use(express.json());
 app.use(cors());
@@ -14,7 +15,7 @@ app.post("/api/create-checkout-session",async(req,res)=>{
 
     const lineItems = products.map((product)=>({
         price_data:{
-            currency:"inr",
+            currency:"usd",
             product_data:{
                 name:product.dish,
                 images:[product.imgdata]
